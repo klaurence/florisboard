@@ -246,6 +246,6 @@ private fun PreferenceUiScope<AppPrefs>.steps(
 private sealed class Steps(val id: Int) {
     data object EnableIme : Steps(id = 1)
     data object SelectIme : Steps(id = 2)
-    data object SelectNotification : Steps(id = 3)
-    data object FinishUp : Steps(id = 4)
+    data object SelectNotification : if (AndroidVersion.ATLEAST_API33_T) Steps(id = 3) else null
+    data object FinishUp : if (AndroidVersion.ATLEAST_API33_T) Steps(id = 4) else Steps(id = 3)
 }
